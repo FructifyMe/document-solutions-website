@@ -275,12 +275,44 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.12));
 }
 
-/* Real logo image (Document Solutions printer + wordmark + tagline) */
+/* Real logo image (legacy — screenshot PNG with tagline, kept as fallback) */
 .brand-logo { height: 60px; width: auto; display: block; }
 .brand-logo-lg { height: 80px; }
 .footer .brand-logo { filter: brightness(0) invert(1); opacity: 0.95; height: 76px; }
 @media (max-width: 960px) { .brand-logo { height: 50px; } }
 @media (max-width: 540px) { .brand-logo { height: 42px; } .footer .brand-logo { height: 60px; } }
+
+/* New: SVG mark + HTML wordmark lockup (cleaner, scalable, faster) */
+.brand-mark {
+  height: 44px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+.brand-wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--ink-900);
+  white-space: nowrap;
+}
+.footer .brand-mark {
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+  height: 56px;
+}
+.footer .brand-wordmark {
+  color: white;
+  font-size: 22px;
+}
+@media (max-width: 540px) {
+  .brand-mark { height: 36px; }
+  .brand-wordmark { font-size: 16px; }
+  .footer .brand-mark { height: 44px; }
+  .footer .brand-wordmark { font-size: 18px; }
+}
 .nav-links {
   display: flex;
   align-items: center;
@@ -450,8 +482,8 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   z-index: 1;
 }
 .hero-slide.product img {
-  max-width: 92%;
-  max-height: 78%;
+  max-width: 98%;
+  max-height: 94%;
   object-fit: contain;
   position: relative;
   z-index: 2;
