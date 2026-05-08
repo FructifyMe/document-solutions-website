@@ -46,7 +46,35 @@
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (toggle && links) {
-    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    const closeMenu = () => {
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+    const openMenu = () => {
+      links.classList.add('open');
+      toggle.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    };
+    toggle.addEventListener('click', () => {
+      if (links.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+    // Close drawer when any link inside it is clicked
+    links.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        if (links.classList.contains('open')) closeMenu();
+      });
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && links.classList.contains('open')) closeMenu();
+    });
+    // Close if window resizes back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960 && links.classList.contains('open')) closeMenu();
+    }, { passive: true });
   }
 
   // --- Lead form (front-end only, posts to Formspree-style endpoint) ---
