@@ -424,13 +424,28 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   overflow: hidden;
   box-shadow: var(--shadow-xl);
   border: 1px solid rgba(15,42,92,0.08);
-  background: var(--ink-100);
+  background: var(--ink-900);
 }
-.hv-photo::after {
+.hv-photo::before {
+  /* deep navy duotone tint — pulls the photo into brand */
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15,42,92,0) 50%, rgba(15,42,92,0.18));
+  background:
+    linear-gradient(135deg,
+      rgba(15, 42, 92, 0.62) 0%,
+      rgba(31, 79, 168, 0.38) 50%,
+      rgba(10, 22, 40, 0.72) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+.hv-photo::after {
+  /* bottom vignette so floating cards always read */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,22,40,0) 40%, rgba(10,22,40,0.55));
+  z-index: 2;
   pointer-events: none;
 }
 .hv-photo img {
@@ -438,6 +453,7 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: saturate(0.78) brightness(0.85) contrast(1.02);
 }
 
 .hv-card {
@@ -509,6 +525,38 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
 }
 .hv-stat-num .currency { font-size: 18px; color: var(--ink-400); vertical-align: top; margin-right: 2px; font-weight: 600; }
 .hv-stat-sub { font-size: 11.5px; color: var(--ink-500); margin-top: 4px; }
+
+/* In-photo subtle trust tag (sits inside the darkened hero photo) */
+.hv-photo-tag {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.hv-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.25);
+  animation: hv-pulse 2.4s ease-in-out infinite;
+}
+@keyframes hv-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.15); }
+}
 
 /* --- Canon featured equipment section --- */
 .canon-feature {

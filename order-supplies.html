@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1F4FA8">
+
+<title>Order Supplies — Document Solutions Customer Portal</title>
+<meta name="description" content="Existing Document Solutions customers: order Canon toner, drums, maintenance kits, and supplies online. Ships against your account on file. No login required.">
+
+<link rel="canonical" href="https://documentsolution.org/order-supplies.html">
+<meta name="robots" content="noindex, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F4FA8'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle' letter-spacing='-0.04em'%3EDS%3C/text%3E%3C/svg%3E">
+
+<style>
+  .order-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: clamp(32px, 5vw, 56px);
+    align-items: start;
+  }
+  @media (max-width: 940px) { .order-grid { grid-template-columns: 1fr; } }
+
+  .order-form-card {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: clamp(28px, 4vw, 48px);
+    border: 1px solid var(--ink-100);
+    box-shadow: var(--shadow-md);
+  }
+  .order-side { display: flex; flex-direction: column; gap: 20px; }
+  .order-side-card {
+    background: var(--surface);
+    border: 1px solid var(--ink-100);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .order-side-card.dark {
+    background: linear-gradient(135deg, var(--brand-blue-deep) 0%, var(--brand-blue) 100%);
+    color: white;
+    border-color: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .order-side-card.dark::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(249,115,22,0.16), transparent 70%);
+    border-radius: 50%;
+  }
+  .order-side-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .order-side-card.dark h3 { color: white; }
+  .order-side-card p { font-size: 14px; color: var(--ink-500); line-height: 1.55; }
+  .order-side-card.dark p { color: rgba(255,255,255,0.82); }
+
+  .order-checklist { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+  .order-check {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; color: var(--ink-600); line-height: 1.5;
+  }
+  .order-check svg { color: var(--success); flex-shrink: 0; margin-top: 3px; }
+
+  .quick-call {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--accent-tint);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-radius: var(--radius-lg);
+    margin-top: 4px;
+  }
+  .quick-call-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: white;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+  }
+  .quick-call-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep); }
+  .quick-call-num { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--ink-900); letter-spacing: -0.02em; line-height: 1.05; }
+  .quick-call a { color: inherit; }
+
+  .form-section-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brand-blue);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 8px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-section-label::before {
+    content: "";
+    width: 22px; height: 2px;
+    background: var(--brand-blue);
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Document Solutions home">
+      <img src="assets/images/logo-full.png" alt="Document Solutions — Making Your Work Easier!" class="brand-logo">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#services" class="nav-link">Services</a>
+      <a href="services/managed-print.html" class="nav-link">Managed Print</a>
+      <a href="services/workflow-consulting.html" class="nav-link">Workflow Consulting</a>
+      <a href="tco-calculator.html" class="nav-link">TCO Calculator</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+    <div class="nav-cta-row">
+      <a href="tel:+19787500444" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        978-750-0444
+      </a>
+      <a href="index.html#contact" class="btn btn-primary btn-sm">Free Print Assessment</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" style="padding-bottom:48px;">
+  <div class="container">
+    <div style="max-width:760px;">
+      <span class="eyebrow fade-up">Customer portal · Existing customers</span>
+      <h1 class="display-1 fade-up delay-1" style="margin-top:18px; margin-bottom:24px;">
+        Order toner, drums &amp;<br>
+        <span class="accent">supplies online.</span>
+      </h1>
+      <p class="lede fade-up delay-2">
+        Quick form, no login. We ship against your account on file —
+        most orders out of Beverly within one business day.
+        <strong style="color:var(--ink-900);">Managed print customers:</strong>
+        supplies are included in your contract at no charge.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ORDER FORM ========== -->
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="order-grid">
+
+      <div class="order-form-card fade-up">
+
+        <form data-lead-form action="https://formspree.io/f/REPLACE_WITH_SUPPLY_FORM_ID" method="POST">
+          <input type="hidden" name="_subject" value="New supply order — documentsolution.org">
+
+          <!-- Customer info -->
+          <div class="form-section-label">Your information</div>
+          <div class="field-row" style="margin-top:12px;">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" required autocomplete="organization">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel">
+            </div>
+          </div>
+
+          <!-- Equipment -->
+          <div class="form-section-label" style="margin-top:24px;">Equipment</div>
+          <div class="field-row" style="margin-top:12px;">
+            <div class="field">
+              <label for="model">Model
+                <span class="subtle" style="font-weight:500; font-size:11px; margin-left:4px;">on the device sticker, e.g. "imageRUNNER C5860i"</span>
+              </label>
+              <input type="text" id="model" name="model" required placeholder="Canon imageRUNNER ..." autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="serial">Serial number
+                <span class="subtle" style="font-weight:500; font-size:11px; margin-left:4px;">optional</span>
+              </label>
+              <input type="text" id="serial" name="serial" autocomplete="off">
+            </div>
+          </div>
+
+          <!-- Order -->
+          <div class="form-section-label" style="margin-top:24px;">What you need</div>
+          <div class="field-row" style="margin-top:12px;">
+            <div class="field" style="flex:2;">
+              <label for="supply-type">Supply</label>
+              <select id="supply-type" name="supply_type" required>
+                <option value="">Select supply…</option>
+                <optgroup label="Toner">
+                  <option>Toner — Black</option>
+                  <option>Toner — Cyan</option>
+                  <option>Toner — Magenta</option>
+                  <option>Toner — Yellow</option>
+                </optgroup>
+                <optgroup label="Drums &amp; imaging">
+                  <option>Drum unit — Black</option>
+                  <option>Drum unit — Color</option>
+                  <option>Imaging unit / set</option>
+                </optgroup>
+                <optgroup label="Maintenance">
+                  <option>Maintenance kit</option>
+                  <option>Fuser unit</option>
+                  <option>Waste toner container</option>
+                  <option>Transfer belt</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option>Staples</option>
+                  <option>Paper / media</option>
+                  <option>Other (describe in notes)</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="field">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            </div>
+          </div>
+
+          <div class="field field-full" style="margin-top:16px;">
+            <label for="additional">Additional items / notes
+              <span class="subtle" style="font-weight:500; font-size:11px; margin-left:4px;">list anything else here — we'll handle it as one order</span>
+            </label>
+            <textarea id="additional" name="additional" placeholder="e.g., Also need 1 cyan toner and a maintenance kit for the front-desk imageCLASS… PO# 4471"></textarea>
+          </div>
+
+          <!-- Logistics -->
+          <div class="form-section-label" style="margin-top:24px;">Delivery</div>
+          <div class="field-row" style="margin-top:12px;">
+            <div class="field">
+              <label for="delivery">Speed</label>
+              <select id="delivery" name="delivery">
+                <option>Standard — 1–2 business days</option>
+                <option>Rush — same/next day if available</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="po">PO number
+                <span class="subtle" style="font-weight:500; font-size:11px; margin-left:4px;">optional</span>
+              </label>
+              <input type="text" id="po" name="po" autocomplete="off">
+            </div>
+          </div>
+          <div class="field field-full" style="margin-top:16px;">
+            <label for="ship-to">Ship to
+              <span class="subtle" style="font-weight:500; font-size:11px; margin-left:4px;">leave blank to use the address on your account</span>
+            </label>
+            <input type="text" id="ship-to" name="ship_to" placeholder="Same as billing address on file" autocomplete="street-address">
+          </div>
+
+          <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:32px; padding-top:24px; border-top:1px solid var(--ink-100);">
+            <button type="submit" class="btn btn-primary btn-lg">
+              Submit Order
+              <span class="btn-arrow">→</span>
+            </button>
+            <span data-status style="font-size:14px; font-weight:500;"></span>
+          </div>
+          <p class="subtle" style="font-size:12px; margin-top:14px;">
+            We'll confirm by email within one business day. Standard orders ship from Beverly within
+            1–2 business days. Questions? Call <a href="tel:+19787500444" style="color:var(--brand-blue); font-weight:600;">978-750-0444</a>.
+          </p>
+        </form>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="order-side">
+
+        <div class="order-side-card dark fade-up">
+          <span class="pill pill-dark" style="margin-bottom:14px;">Managed print customers</span>
+          <h3 style="font-size:18px; line-height:1.3;">Already on a managed print contract?</h3>
+          <p style="margin-top:8px;">Toner, drums, and most consumables are <strong style="color:white;">included at no charge</strong> in your per-page agreement. Order normally — we'll ship from your contract allocation.</p>
+        </div>
+
+        <div class="order-side-card fade-up delay-1">
+          <h3 class="strong">What to expect</h3>
+          <div class="order-checklist">
+            <div class="order-check">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Email confirmation within 1 business day</span>
+            </div>
+            <div class="order-check">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Standard ship from Beverly: 1–2 business days</span>
+            </div>
+            <div class="order-check">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Rush available — most North Shore same/next-day</span>
+            </div>
+            <div class="order-check">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Billed against your existing account terms</span>
+            </div>
+            <div class="order-check">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>No payment processing — no credit card needed here</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-call fade-up delay-2">
+          <div class="quick-call-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="quick-call-label">Or just call</div>
+            <a href="tel:+19787500444" class="quick-call-num">978-750-0444</a>
+          </div>
+        </div>
+
+        <div class="order-side-card fade-up delay-3">
+          <h3 class="strong">Not a customer yet?</h3>
+          <p>This page is for businesses already on a Document Solutions account. New here? Start with a free print assessment — we'll walk through your setup and show you whether managed print is the right fit.</p>
+          <a href="index.html#contact" class="btn btn-blue btn-sm" style="margin-top:14px;">
+            Free Print Assessment
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="Document Solutions home">
+          <img src="assets/images/logo-full.png" alt="Document Solutions — Making Your Work Easier!" class="brand-logo">
+        </a>
+        <p class="footer-tagline">Canon authorized dealer in Beverly, Massachusetts. Helping North Shore businesses print smarter, run leaner, and stay running since 2005.</p>
+        <div class="footer-contact">
+          <div class="footer-contact-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>8 Garfield Avenue<br>Beverly, MA 01915</span>
+          </div>
+          <div class="footer-contact-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+19787500444">978-750-0444</a>
+          </div>
+          <div class="footer-contact-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:jim@documentsolution.org">jim@documentsolution.org</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="services/managed-print.html">Managed Print Services</a>
+          <a href="services/workflow-consulting.html">Workflow Consulting</a>
+          <a href="index.html#services">Canon Sales &amp; Leasing</a>
+          <a href="index.html#services">On-Site Service &amp; Support</a>
+          <a href="tco-calculator.html">TCO Calculator</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Customers</div>
+        <div class="footer-links">
+          <a href="order-supplies.html">Order Supplies</a>
+          <a href="tel:+19787500444">Service Request — Call</a>
+          <a href="mailto:jim@documentsolution.org">Email Support</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="about.html">About Jim Cross</a>
+          <a href="index.html#contact">Free Assessment</a>
+          <a href="https://www.bbb.org/" target="_blank" rel="noopener">BBB A+ Profile</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span data-year>2026</span> Document Solutions · Founded 2005 · Beverly, MA · All rights reserved</div>
+      <div class="footer-badges">
+        <img src="assets/images/canon-logo.png" alt="Canon Authorized Dealer">
+        <img src="assets/images/bbb-rating.png" alt="BBB A+ Rated">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
