@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1F4FA8">
+
+<title>Free Print Cost Calculator (TCO) — Document Solutions, Beverly MA</title>
+<meta name="description" content="Free 3-year print cost calculator. See your real total cost of ownership for copiers, toner, supplies, and service — compare against a Canon managed print plan. No login required.">
+
+<link rel="canonical" href="https://documentsolution.org/tco-calculator.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Print Cost (TCO) Calculator — Document Solutions">
+<meta property="og:description" content="See your real 3-year print cost in 2 minutes. Compare against Canon managed print.">
+<meta property="og:url" content="https://documentsolution.org/tco-calculator.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F4FA8'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='15' font-weight='800' fill='white' text-anchor='middle' letter-spacing='-0.04em'%3EDS%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Print Cost (TCO) Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Free interactive calculator that estimates 3-year total cost of ownership for office print and compares it against a Canon managed print plan from Document Solutions.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Document Solutions",
+    "url": "https://documentsolution.org/",
+    "telephone": "+1-978-750-0444"
+  }
+}
+</script>
+
+<style>
+  .tco-shell {
+    background: var(--surface);
+    border: 1px solid var(--ink-100);
+    border-radius: var(--radius-xl);
+    padding: clamp(28px, 5vw, 56px);
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+  }
+  @media (max-width: 940px) { .tco-shell { grid-template-columns: 1fr; } }
+  .tco-form { display: flex; flex-direction: column; gap: 22px; }
+  .tco-row-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tco-input-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-700);
+    margin-bottom: 6px;
+  }
+  .tco-input-label .hint { font-size: 11px; font-weight: 500; color: var(--ink-400); }
+  .tco-input {
+    font: inherit;
+    font-size: 15px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--ink-200);
+    border-radius: var(--radius);
+    background: var(--surface-tint);
+    color: var(--ink-900);
+    width: 100%;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .tco-input:focus { outline: none; border-color: var(--brand-blue); background: white; box-shadow: var(--shadow-glow); }
+  .tco-segment {
+    display: flex;
+    background: var(--ink-50);
+    border-radius: var(--radius);
+    padding: 4px;
+    gap: 4px;
+  }
+  .tco-segment input { display: none; }
+  .tco-segment label {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-500);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .tco-segment input:checked + label {
+    background: white;
+    color: var(--brand-blue);
+    box-shadow: var(--shadow-sm);
+  }
+  .tco-result {
+    background: linear-gradient(135deg, var(--brand-blue-deep) 0%, #163E89 60%, var(--brand-blue) 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 4vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .tco-result::before {
+    content: "";
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(249,115,22,0.18), transparent 70%);
+    border-radius: 50%;
+  }
+  .tco-result-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
+  .tco-result-savings {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 4px 0 8px;
+    background: linear-gradient(135deg, white 0%, #FFB37D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tco-result-percent {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFB37D;
+    margin-bottom: 24px;
+  }
+  .tco-bars { margin: 24px 0 8px; }
+  .tco-bar-row { margin-bottom: 16px; }
+  .tco-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .tco-bar-label .v { font-family: var(--font-display); font-weight: 700; }
+  .tco-bar-track { height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; }
+  .tco-bar-fill { height: 100%; border-radius: 999px; transition: width .8s var(--ease-out); }
+  .tco-bar-fill.current { background: linear-gradient(90deg, #FFB37D, #F97316); }
+  .tco-bar-fill.canon { background: linear-gradient(90deg, white, rgba(255,255,255,0.7)); }
+  .tco-breakdown {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 18px 20px;
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
+  }
+  .tco-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+  }
+  .tco-breakdown-row + .tco-breakdown-row { border-top: 1px solid rgba(255,255,255,0.08); }
+  .tco-breakdown-row .v { font-family: var(--font-display); font-weight: 700; color: white; }
+
+  .tco-cta {
+    margin-top: 24px;
+    background: rgba(255,255,255,0.06);
+    border: 1px dashed rgba(255,255,255,0.18);
+    padding: 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+  }
+  .tco-cta strong { color: white; display: block; margin-bottom: 6px; font-family: var(--font-display); font-size: 16px; }
+  .tco-cta .btn { margin-top: 14px; }
+
+  .tco-disclaimer { font-size: 12px; color: var(--ink-400); margin-top: 16px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Document Solutions home">
+      <span class="nav-logo-mark">DS</span>
+      <span>Document Solutions</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#services" class="nav-link">Services</a>
+      <a href="services/managed-print.html" class="nav-link">Managed Print</a>
+      <a href="services/workflow-consulting.html" class="nav-link">Workflow Consulting</a>
+      <a href="tco-calculator.html" class="nav-link">TCO Calculator</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+    <div class="nav-cta-row">
+      <a href="tel:+19787500444" class="nav-phone">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        978-750-0444
+      </a>
+      <a href="index.html#contact" class="btn btn-primary btn-sm">Free Assessment</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" style="padding-bottom:48px;">
+  <div class="container">
+    <div style="max-width:880px;">
+      <span class="eyebrow fade-up">Free interactive tool · No login</span>
+      <h1 class="display-1 fade-up delay-1" style="margin-top:18px; margin-bottom:24px;">
+        See your real 3-year<br>
+        <span class="accent">print cost</span> in 2 minutes.
+      </h1>
+      <p class="lede fade-up delay-2">
+        Toner. Drums. Lease overage. Service calls. The receptionist's hours spent ordering supplies.
+        Most businesses are underestimating their print spend by 20–40%. This calculator pulls the
+        whole picture together — then shows you the difference against a Canon managed print plan.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CALCULATOR ========== -->
+<section style="padding-top:0;">
+  <div class="container">
+
+    <div class="tco-shell fade-up">
+
+      <!-- INPUTS -->
+      <div class="tco-form">
+        <div>
+          <span class="eyebrow">Step 1</span>
+          <h2 class="heading-md" style="margin-top:8px;">Tell us about your current setup</h2>
+        </div>
+
+        <div>
+          <div class="tco-input-label"><span>Number of printers / copiers</span><span class="hint">in your office today</span></div>
+          <input type="number" min="1" step="1" id="tco-devices" value="3" class="tco-input">
+        </div>
+
+        <div class="tco-row-pair">
+          <div>
+            <div class="tco-input-label"><span>Mono pages / month</span><span class="hint">total fleet</span></div>
+            <input type="number" min="0" step="500" id="tco-mono" value="6000" class="tco-input">
+          </div>
+          <div>
+            <div class="tco-input-label"><span>Color pages / month</span></div>
+            <input type="number" min="0" step="500" id="tco-color" value="1500" class="tco-input">
+          </div>
+        </div>
+
+        <div>
+          <div class="tco-input-label"><span>Current monthly lease / equipment cost</span><span class="hint">$ if leased</span></div>
+          <input type="number" min="0" step="50" id="tco-lease" value="350" class="tco-input">
+        </div>
+
+        <div>
+          <div class="tco-input-label"><span>Monthly toner &amp; supplies spend</span><span class="hint">average across fleet</span></div>
+          <input type="number" min="0" step="25" id="tco-toner" value="280" class="tco-input">
+        </div>
+
+        <div>
+          <div class="tco-input-label"><span>Service calls per year</span><span class="hint">paid out-of-pocket</span></div>
+          <input type="number" min="0" step="1" id="tco-service" value="6" class="tco-input">
+        </div>
+
+        <div>
+          <div class="tco-input-label"><span>Equipment age</span></div>
+          <div class="tco-segment" role="radiogroup" aria-label="Equipment age">
+            <input type="radio" name="age" id="age-new" value="new"><label for="age-new">&lt; 2 yrs</label>
+            <input type="radio" name="age" id="age-mid" value="mid" checked><label for="age-mid">2–5 yrs</label>
+            <input type="radio" name="age" id="age-old" value="old"><label for="age-old">5+ yrs</label>
+          </div>
+        </div>
+
+        <p class="tco-disclaimer">Numbers are illustrative until we run a real assessment with your actual data. Used for benchmarking only — not a binding quote.</p>
+      </div>
+
+      <!-- RESULT -->
+      <div>
+        <div class="tco-result">
+
+          <div class="tco-result-label">Estimated 3-year savings with Document Solutions</div>
+          <div class="tco-result-savings"><span style="font-size:0.55em;opacity:0.7;vertical-align:top;">$</span><span id="r-savings">18,420</span></div>
+          <div class="tco-result-percent"><span id="r-percent">34</span>% lower total cost</div>
+
+          <div class="tco-bars">
+            <div class="tco-bar-row">
+              <div class="tco-bar-label"><span>Your current 3-yr cost</span><span class="v">$<span id="r-current">54,720</span></span></div>
+              <div class="tco-bar-track"><div class="tco-bar-fill current" style="width:100%" id="bar-current"></div></div>
+            </div>
+            <div class="tco-bar-row">
+              <div class="tco-bar-label"><span>Document Solutions plan</span><span class="v">$<span id="r-canon">36,300</span></span></div>
+              <div class="tco-bar-track"><div class="tco-bar-fill canon" style="width:66%" id="bar-canon"></div></div>
+            </div>
+          </div>
+
+          <div class="tco-breakdown">
+            <div class="tco-breakdown-row"><span>Hardware / lease (3 yrs)</span><span class="v">$<span id="b-lease">12,600</span></span></div>
+            <div class="tco-breakdown-row"><span>Toner &amp; supplies (3 yrs)</span><span class="v">$<span id="b-toner">10,080</span></span></div>
+            <div class="tco-breakdown-row"><span>Per-page volume (3 yrs)</span><span class="v">$<span id="b-volume">9,180</span></span></div>
+            <div class="tco-breakdown-row"><span>Service &amp; downtime</span><span class="v">$<span id="b-service">4,440</span></span></div>
+          </div>
+
+          <div class="tco-cta">
+            <strong>Want this as a written report?</strong>
+            We'll email a personalized 3-year analysis with Canon equipment recommendations sized for your volume — usually within one business day. No salesperson visit unless you ask.
+            <a href="index.html#contact" class="btn btn-primary btn-sm">Email Me My Report →</a>
+          </div>
+
+        </div>
+
+        <p style="font-size:13px; color:var(--ink-400); margin-top:18px;">
+          Even a free assessment usually changes these numbers by 10-20% once we look at your actual fleet,
+          contract terms, and usage patterns. <a href="index.html#contact" style="color:var(--brand-blue); font-weight:600;">Schedule a 30-minute walkthrough</a> for the real number.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== METHODOLOGY ========== -->
+<section style="background:white;">
+  <div class="container container-narrow">
+    <div class="section-header center fade-up">
+      <span class="eyebrow">Methodology</span>
+      <h2 class="display-3">How the math works.</h2>
+      <p>No black boxes. Here's exactly what this calculator does — and what it can't do without a real assessment.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento bento-md fade-up">
+        <div class="bento-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 18v4M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M18 12h4"/></svg></div>
+        <h3>Inputs we use</h3>
+        <p>Device count, monthly mono and color volumes, current lease cost, supply spend, service-call frequency, and equipment age. Those are the variables that drive 90% of total print cost.</p>
+      </div>
+      <div class="bento bento-md fade-up delay-1">
+        <div class="bento-icon orange"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>Hidden costs we add back</h3>
+        <p>Toner stockouts, emergency service surcharges, downtime hours, and the staff time spent ordering supplies. These are real costs that almost never make it into a copier RFP.</p>
+      </div>
+      <div class="bento bento-md fade-up delay-2">
+        <div class="bento-icon green"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Document Solutions plan</h3>
+        <p>Per-page managed print pricing — typical North Shore market rates for similar fleet sizes. Includes Canon hardware lease, toner, monitoring, and service.</p>
+      </div>
+      <div class="bento bento-md fade-up">
+        <div class="bento-icon gold"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+        <h3>What this can't see</h3>
+        <p>Your specific lease terms, your contract overages, your actual device wear, and any per-customer rebates. A real 30-minute assessment closes that gap and produces a binding quote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section>
+  <div class="container">
+    <div class="cta-banner fade-up">
+      <span class="pill pill-dark" style="margin-bottom:20px">Beverly · Salem · Danvers · Peabody · Gloucester · Newburyport</span>
+      <h2>Now let's see what the real number is.</h2>
+      <p>Free, no-obligation 30-minute walkthrough of your current setup. We'll send you a written 3-year cost analysis and a candid recommendation.</p>
+      <a href="index.html#contact" class="btn btn-primary btn-lg">Request Free Assessment <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-mark">DS</span>
+          <span style="color:white">Document Solutions</span>
+        </a>
+        <p class="footer-tagline">Canon authorized dealer in Beverly, Massachusetts. Helping North Shore businesses print smarter, run leaner, and stay running since 2005.</p>
+        <div class="footer-contact">
+          <div class="footer-contact-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>8 Garfield Avenue<br>Beverly, MA 01915</span>
+          </div>
+          <div class="footer-contact-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+19787500444">978-750-0444</a>
+          </div>
+          <div class="footer-contact-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:jim@documentsolution.org">jim@documentsolution.org</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="services/managed-print.html">Managed Print Services</a>
+          <a href="services/workflow-consulting.html">Workflow Consulting</a>
+          <a href="index.html#services">Canon Sales &amp; Leasing</a>
+          <a href="index.html#services">On-Site Service &amp; Support</a>
+          <a href="tco-calculator.html">TCO Calculator</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="about.html">About Jim Cross</a>
+          <a href="index.html#contact">Free Assessment</a>
+          <a href="https://www.bbb.org/" target="_blank" rel="noopener">BBB A+ Profile</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Service Area</div>
+        <div class="footer-links">
+          <a href="#">Beverly, MA</a>
+          <a href="#">Salem, MA</a>
+          <a href="#">Danvers, MA</a>
+          <a href="#">Peabody, MA</a>
+          <a href="#">Gloucester, MA</a>
+          <a href="#">Marblehead, MA</a>
+          <a href="#">Newburyport, MA</a>
+          <a href="#">+ all of the North Shore</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span data-year>2026</span> Document Solutions · Founded 2005 · Beverly, MA · All rights reserved</div>
+      <div class="footer-badges">
+        <img src="assets/images/canon-logo.png" alt="Canon Authorized Dealer">
+        <img src="assets/images/bbb-rating.png" alt="BBB A+ Rated">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+<script>
+// --- TCO live calculation ---
+(function () {
+  const fmt = (n) => Math.round(n).toLocaleString('en-US');
+  const $ = (id) => document.getElementById(id);
+
+  const calc = () => {
+    const devices = Math.max(1, +$('tco-devices').value || 1);
+    const mono = Math.max(0, +$('tco-mono').value || 0);
+    const color = Math.max(0, +$('tco-color').value || 0);
+    const lease = Math.max(0, +$('tco-lease').value || 0);
+    const toner = Math.max(0, +$('tco-toner').value || 0);
+    const service = Math.max(0, +$('tco-service').value || 0);
+    const age = (document.querySelector('input[name="age"]:checked') || {}).value || 'mid';
+
+    // --- Current 3-year cost ---
+    const ageMultiplier = age === 'old' ? 1.35 : age === 'mid' ? 1.10 : 1.0;
+    const downtimeHrs = service * 4 * ageMultiplier;        // 4 hours per service call avg
+    const downtimeCost = downtimeHrs * 75;                   // $75/hr fully-loaded loss
+    const orderingCost = devices * 18 * 12;                  // $18/device/month staff time
+
+    const leaseCost  = lease * 36;
+    const tonerCost  = toner * 36 * (age === 'old' ? 1.15 : 1.0);
+    const volumeMono = mono * 0.025;                          // hidden per-page (paper, drum wear) for old setups
+    const volumeColor = color * 0.07;
+    const volumeCost = (volumeMono + volumeColor) * 36;
+    const serviceCost = service * 220 * 3 + downtimeCost + orderingCost;
+
+    const currentTotal = leaseCost + tonerCost + volumeCost + serviceCost;
+
+    // --- Document Solutions managed print equivalent ---
+    const dsPerPageMono  = 0.011;
+    const dsPerPageColor = 0.062;
+    const dsPagesCost = (mono * dsPerPageMono + color * dsPerPageColor) * 36;
+    // Hardware refresh built into per-page; assume baseline lease similar but tuned by volume
+    const dsHardwareBase = devices * (mono + color > 8000 ? 240 : 175) * 36;
+    const dsTotal = dsPagesCost + dsHardwareBase;
+
+    const savings = Math.max(0, currentTotal - dsTotal);
+    const pct = currentTotal ? Math.round((savings / currentTotal) * 100) : 0;
+
+    $('r-current').textContent = fmt(currentTotal);
+    $('r-canon').textContent = fmt(dsTotal);
+    $('r-savings').textContent = fmt(savings);
+    $('r-percent').textContent = pct;
+
+    $('b-lease').textContent = fmt(leaseCost);
+    $('b-toner').textContent = fmt(tonerCost);
+    $('b-volume').textContent = fmt(volumeCost);
+    $('b-service').textContent = fmt(serviceCost);
+
+    // bars
+    const barCanonPct = currentTotal ? Math.max(8, Math.round((dsTotal / currentTotal) * 100)) : 100;
+    $('bar-canon').style.width = barCanonPct + '%';
+  };
+
+  ['tco-devices','tco-mono','tco-color','tco-lease','tco-toner','tco-service'].forEach((id) => {
+    $(id).addEventListener('input', calc);
+  });
+  document.querySelectorAll('input[name="age"]').forEach((el) => el.addEventListener('change', calc));
+  calc();
+})();
+</script>
+</body>
+</html>
