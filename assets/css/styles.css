@@ -275,24 +275,23 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.12));
 }
 
-/* Brand logo — full lockup SVG (logo-nobg.svg, transparent background, includes icon + wordmark) */
+/* Brand logo — full lockup PNG (newLogo.png, transparent background, icon + wordmark) */
 .brand-logo {
-  height: 56px;
+  height: 64px;
   width: auto;
   display: block;
-  /* The SVG has a 2.25:1 aspect — at 56px tall renders ~126px wide */
 }
-.brand-logo-lg { height: 80px; }
+.brand-logo-lg { height: 88px; }
 .footer .brand-logo {
-  height: 72px;
+  height: 80px;
   filter: brightness(0) invert(1);
   opacity: 0.95;
-  /* Transparent-background SVG inverted to a clean white silhouette on the dark footer */
+  /* Transparent-background PNG inverted to a clean white silhouette on the dark footer */
 }
-@media (max-width: 960px) { .brand-logo { height: 48px; } }
+@media (max-width: 960px) { .brand-logo { height: 56px; } }
 @media (max-width: 540px) {
-  .brand-logo { height: 40px; }
-  .footer .brand-logo { height: 58px; }
+  .brand-logo { height: 46px; }
+  .footer .brand-logo { height: 64px; }
 }
 
 /* New: SVG mark + HTML wordmark lockup (cleaner, scalable, faster) */
