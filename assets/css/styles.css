@@ -412,7 +412,123 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   letter-spacing: 0.01em;
 }
 
-/* Hero visual — real photo + floating glass overlays */
+/* Hero visual — Canon product showcase (clean, branded, no lifestyle photo) */
+.hero-product {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(60% 60% at 50% 25%, rgba(31,79,168,0.30), transparent 70%),
+    linear-gradient(135deg, #1a1f2e 0%, #0a0f1a 100%);
+  box-shadow: var(--shadow-xl), inset 0 1px 0 rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(28px, 4vw, 56px);
+}
+.hero-product::before {
+  /* subtle grid pattern */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-product img {
+  max-width: 92%;
+  max-height: 78%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6));
+}
+.hero-product-badge {
+  position: absolute;
+  top: 22px; left: 22px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.20);
+  color: white;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-product-badge::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.25);
+  animation: hv-pulse 2.4s ease-in-out infinite;
+}
+.hero-product-meta {
+  position: absolute;
+  left: 22px; right: 22px; bottom: 22px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.14);
+  padding: 14px 20px;
+  border-radius: var(--radius);
+}
+.hero-product-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.hero-product-spec {
+  font-size: 12px;
+  color: rgba(255,255,255,0.72);
+  margin-top: 4px;
+}
+.hero-product-stats {
+  display: flex;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.hero-product-stat {
+  text-align: right;
+}
+.hero-product-stat-num {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.hero-product-stat-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  margin-top: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Hero visual — legacy lifestyle-photo treatment (kept for reference) */
 .hero-visual {
   position: relative;
   height: clamp(420px, 56vw, 560px);
