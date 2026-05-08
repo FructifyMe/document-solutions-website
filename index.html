@@ -226,21 +226,79 @@
     </div>
 
     <div class="hero-visual fade-up delay-2">
-      <div class="hero-product">
-        <span class="hero-product-badge">Canon Authorized · Beverly MA</span>
-        <img src="assets/images/canon-c5700-product.webp" alt="Canon imageRUNNER ADV DX C5700 multifunction printer — flagship workgroup model carried by Document Solutions" loading="eager" fetchpriority="high">
-        <div class="hero-product-meta">
-          <div>
-            <div class="hero-product-name">imageRUNNER ADV DX C5700</div>
-            <div class="hero-product-spec">Workgroup color MFP · 11×17 · uniFLOW-ready</div>
-          </div>
-          <div class="hero-product-stats">
-            <div class="hero-product-stat">
-              <div class="hero-product-stat-num">70</div>
-              <div class="hero-product-stat-label">PPM</div>
+      <div class="hero-slideshow" data-slideshow>
+
+        <!-- Slide 1: imageRUNNER ADV DX C5700 -->
+        <div class="hero-slide product active" data-slide="0">
+          <span class="hero-slide-badge">Canon Authorized · Beverly MA</span>
+          <img src="assets/images/canon-c5700-product.webp" alt="Canon imageRUNNER ADV DX C5700 multifunction printer" loading="eager" fetchpriority="high">
+          <div class="hero-slide-meta">
+            <div>
+              <div class="hero-slide-name">imageRUNNER ADV DX C5700</div>
+              <div class="hero-slide-spec">Workgroup color MFP · 11×17 · uniFLOW-ready</div>
+            </div>
+            <div class="hero-slide-stat">
+              <span class="hero-slide-stat-num">70</span>
+              <span class="hero-slide-stat-label">PPM Color</span>
             </div>
           </div>
         </div>
+
+        <!-- Slide 2: imageRUNNER 1530ii -->
+        <div class="hero-slide product" data-slide="1">
+          <span class="hero-slide-badge">Workgroup MFP · Compact</span>
+          <img src="assets/images/canon-1530ii-product.avif" alt="Canon imageRUNNER 1530ii compact monochrome multifunction printer" loading="lazy">
+          <div class="hero-slide-meta">
+            <div>
+              <div class="hero-slide-name">imageRUNNER 1530ii</div>
+              <div class="hero-slide-spec">Monochrome workhorse · ideal for satellite offices</div>
+            </div>
+            <div class="hero-slide-stat">
+              <span class="hero-slide-stat-num">42</span>
+              <span class="hero-slide-stat-label">PPM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Workplace lifestyle (heavily duotone-treated) -->
+        <div class="hero-slide lifestyle" data-slide="2">
+          <span class="hero-slide-badge">Real Workflow · NJM Consulting</span>
+          <img src="assets/images/canon-office-hero.webp" alt="A North Shore office team working alongside a Canon multifunction printer with uniFLOW workflows" loading="lazy">
+          <div class="hero-slide-meta">
+            <div>
+              <div class="hero-slide-name">Built around how your office actually works</div>
+              <div class="hero-slide-spec">Secure print release · scan-to-cloud · per-user accounting</div>
+            </div>
+            <div class="hero-slide-stat">
+              <span class="hero-slide-stat-num">uniFLOW</span>
+              <span class="hero-slide-stat-label">Powered</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Full Canon catalog -->
+        <div class="hero-slide product" data-slide="3">
+          <span class="hero-slide-badge">Full Canon Catalog</span>
+          <img src="assets/images/canon-printers.png" alt="Canon imageRUNNER, imageCLASS, and PIXMA printers carried by Document Solutions" loading="lazy">
+          <div class="hero-slide-meta">
+            <div>
+              <div class="hero-slide-name">Desktop to production print</div>
+              <div class="hero-slide-spec">imageCLASS · imageRUNNER · imagePRESS · imageFORCE</div>
+            </div>
+            <div class="hero-slide-stat">
+              <span class="hero-slide-stat-num">A+</span>
+              <span class="hero-slide-stat-label">BBB Rated</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-slide-dots" role="tablist" aria-label="Hero slideshow">
+          <button class="hero-slide-dot active" data-go="0" aria-label="Go to slide 1"></button>
+          <button class="hero-slide-dot" data-go="1" aria-label="Go to slide 2"></button>
+          <button class="hero-slide-dot" data-go="2" aria-label="Go to slide 3"></button>
+          <button class="hero-slide-dot" data-go="3" aria-label="Go to slide 4"></button>
+        </div>
+
       </div>
     </div>
   </div>
