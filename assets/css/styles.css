@@ -274,6 +274,12 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   inset: 0;
   background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.12));
 }
+
+/* Real logo image (Document Solutions printer + wordmark + tagline) */
+.brand-logo { height: 42px; width: auto; display: block; }
+.brand-logo-lg { height: 64px; }
+.footer .brand-logo { filter: brightness(0) invert(1); opacity: 0.92; height: 48px; }
+@media (max-width: 540px) { .brand-logo { height: 34px; } }
 .nav-links {
   display: flex;
   align-items: center;
