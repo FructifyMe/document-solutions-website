@@ -66,7 +66,7 @@
           if (!res.ok) throw new Error('Bad response');
         }
         if (status) {
-          status.textContent = "Thanks — Jim will be in touch within one business day.";
+          status.textContent = "Thanks — Jim or someone on the team will get back to you directly.";
           status.style.color = 'var(--success)';
         }
         form.reset();
