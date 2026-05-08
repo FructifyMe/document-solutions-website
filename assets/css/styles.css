@@ -275,12 +275,24 @@ section { padding: clamp(64px, 9vw, 128px) 0; position: relative; }
   background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.12));
 }
 
-/* Real logo image (legacy — screenshot PNG with tagline, kept as fallback) */
-.brand-logo { height: 60px; width: auto; display: block; }
+/* Brand logo — full lockup SVG (logo-vector.svg, includes icon + wordmark) */
+.brand-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+  /* The SVG has a 2.25:1 aspect — at 56px tall renders ~126px wide */
+}
 .brand-logo-lg { height: 80px; }
-.footer .brand-logo { filter: brightness(0) invert(1); opacity: 0.95; height: 76px; }
-@media (max-width: 960px) { .brand-logo { height: 50px; } }
-@media (max-width: 540px) { .brand-logo { height: 42px; } .footer .brand-logo { height: 60px; } }
+.footer .brand-logo {
+  height: 72px;
+  /* No invert filter: the SVG includes a white card background + blue artwork.
+     Displayed natively against the dark footer, it reads like a brand card. */
+}
+@media (max-width: 960px) { .brand-logo { height: 48px; } }
+@media (max-width: 540px) {
+  .brand-logo { height: 40px; }
+  .footer .brand-logo { height: 58px; }
+}
 
 /* New: SVG mark + HTML wordmark lockup (cleaner, scalable, faster) */
 .brand-mark {
